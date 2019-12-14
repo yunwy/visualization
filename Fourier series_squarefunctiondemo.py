@@ -5,19 +5,13 @@ from matplotlib.widgets import Slider
 
 t = np.arange(-3*np.pi, 3*np.pi + 0.1, 0.1)
 
-#Evaluation function and Square function
-def evf(x):
-    i = x/np.pi
-    k = int(i)
-    if x < 0:
-        k = k-1
-    return k%2
-
-    
+#Square function
 def sqf(x):
-    if evf(x) == 0:
+    k = np.floor(x/np.pi)
+    if k%2 == 0:
         return np.pi/2
-    elif evf(x) == 1:
+    else:
+        return -np.pi/2
         return -np.pi/2
 
 
