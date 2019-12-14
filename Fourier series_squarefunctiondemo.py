@@ -12,7 +12,6 @@ def sqf(x):
         return np.pi/2
     else:
         return -np.pi/2
-        return -np.pi/2
 
 
 #Coefficient
