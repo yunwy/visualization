@@ -13,7 +13,7 @@ def upd_position(event):
     if event.inaxes != ax:
         return
         
-    if event.button == 1:
+    else:
         xp = event.xdata
         yp = event.ydata
         circle.center = list(circle.center)
@@ -48,7 +48,7 @@ def upd_vectors(event):
     if event.inaxes != ax:
         return 
 
-    if event.button == 1:
+    else:
         global xdata, ydata
         xdata = event.xdata
         ydata = event.ydata
