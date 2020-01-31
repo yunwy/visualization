@@ -38,7 +38,7 @@ plt.grid()
 plt.subplot(1,2,2)
 curve = plt.plot(xt, yt)[0]
 plt.xlabel('$x(t)$')
-plt.ylabel("$x'(t)$")
+plt.ylabel('$\dot{x}(t)$')
 plt.title('Phase plane')
 plt.grid()
 
@@ -49,7 +49,7 @@ ax_y0 = plt.axes([0.13, 0.02, 0.74, 0.03])
 
 slider_mu = Slider(ax_mu, '$\mu$', 0, 20.0, valinit=mu)
 slider_x0 = Slider(ax_x0, '$x_0$', -2, 2, valinit=x0)
-slider_y0 = Slider(ax_y0, '$y_0$', -6, 6, valinit=y0)
+slider_y0 = Slider(ax_y0, '$\dot{x}_0$', -6, 6, valinit=y0)
 
 
 def upd(val):
