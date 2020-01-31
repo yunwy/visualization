@@ -9,19 +9,6 @@ Y = np.linspace(-2, 2, n)
 x, y = np.meshgrid(X, Y)
 
 
-def upd_position(event):
-    if event.inaxes != ax:
-        return
-        
-    else:
-        xp = event.xdata
-        yp = event.ydata
-        circle.center = list(circle.center)
-        circle.center[0] = xp
-        circle.center[1] = yp
-        plt.draw()
-
-
 fig= plt.figure(figsize=[9, 7])
 ax = plt.axes(xlim = (-2, 2), ylim = (-2, 2))
 plt.title('$ \\vec{F} = \\frac{k}{r^2} \\hat{r} $')
@@ -44,37 +31,37 @@ vec = ax.quiver(x, y, u1, u2, Intensity, cmap='cool')
 fig.colorbar(vec, shrink = 0.5, aspect = 5) 
 
 
-def upd_vectors(event):
+def upd1(event):
     if event.inaxes != ax:
-        return 
-
-    else:
-        global xdata, ydata
-        xdata = event.xdata
-        ydata = event.ydata
+        return
         
-        v1, v2, intense = Field(x, y, x0=xdata, y0=ydata, k=val_k, s=sdata)
+    else:
+        global xp, yp
+        xp = event.xdata
+        yp = event.ydata
+        circle.center = list(circle.center)
+        circle.center[0] = xp
+        circle.center[1] = yp
+
+        v1, v2, intense = Field(x, y, x0=xp, y0=yp, k=val_k, s=sdata)
         vec.set_UVC(v1, v2, C=intense)
         plt.draw()
 
-xdata, ydata = 0, 0
 
+xp, yp = 0, 0
 
 bar = plt.axes([0.1, 0.02, 0.74, 0.03])
 slider = Slider(bar, '|k|', -5, 100, valinit=1)
+
+button = plt.axes([0.77, 0.09, 0.17, 0.17])
+radio = RadioButtons(button, ('k > 0', 'k < 0'))
 
 
 def upd_intensity(val):
     global val_k
     val_k = slider.val
-    v1, v2, intensity = Field(x, y, x0=xdata, y0=ydata, k=val_k, s=sdata)
+    v1, v2, intensity = Field(x, y, x0=xp, y0=yp, k=val_k, s=sdata)
     vec.set_UVC(v1, v2, C=intensity)
-
-val_k = 1
-
-
-button = plt.axes([0.01, 0.4, 0.07, 0.1])
-radio = RadioButtons(button, ('k > 0', 'k < 0'))
 
 
 def upd_sign(label):
@@ -82,17 +69,17 @@ def upd_sign(label):
     global sdata
     sdata = signdict[label]
     
-    v1, v2, intensity = Field(x, y, x0=xdata, y0=ydata, k=val_k, s=sdata)
+    v1, v2, intensity = Field(x, y, x0=xp, y0=yp, k=val_k, s=sdata)
     vec.set_UVC(v1, v2)
     plt.draw()
 
-sdata = 1
+val_k, sdata = 1, 1
 
 
 slider.on_changed(upd_intensity)
 radio.on_clicked(upd_sign)
-fig.canvas.mpl_connect('button_press_event', upd_position)
-fig.canvas.mpl_connect('button_press_event', upd_vectors)
+fig.canvas.mpl_connect('button_press_event', upd1)
+fig.canvas.mpl_connect('button_press_event', upd1)
 
 
 plt.show()
