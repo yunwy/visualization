@@ -63,6 +63,8 @@ def upd(val):
     curve.set_xdata(update[0])
     curve.set_ydata(update[1])
 
+    if max(update[1]) > 6:
+        ax.set_ylim([min(update[1]) - 0.5, max(update[1]) + 0.5])
 
 slider_mu.on_changed(upd)
 slider_x0.on_changed(upd)
