@@ -51,7 +51,7 @@ def upd1(event):
 xp, yp = 0, 0
 
 bar = plt.axes([0.1, 0.02, 0.74, 0.03])
-slider = Slider(bar, '|k|', -5, 100, valinit=1)
+slider = Slider(bar, '|k|', 0, 100, valinit=1)
 
 button = plt.axes([0.77, 0.09, 0.17, 0.17])
 radio = RadioButtons(button, ('k > 0', 'k < 0'))
