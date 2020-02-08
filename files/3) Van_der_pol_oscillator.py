@@ -7,15 +7,15 @@ from scipy.integrate import solve_ivp
 mu = 2
 dt = 0.01
 t = np.arange(0, 50, dt)
-x0, y0 = 0, 0.1
+x0, v0 = 0, 0.1
 
 
 def vanderpol(t, z, mu):
-    x, y = z
-    return [y, mu*(1 - x**2)*y - x]
+    x, v = z
+    return [v, mu*(1 - x**2)*v - x]
 
 
-sol = solve_ivp(vanderpol, (t[0], t[-1]), (x0, y0),
+sol = solve_ivp(vanderpol, (t[0], t[-1]), (x0, v0),
                 args=[mu], method='RK45', dense_output=True)
 z = sol.sol(t)
 
@@ -41,19 +41,19 @@ plt.grid()
 
 ax_mu = plt.axes([0.13, 0.12, 0.74, 0.03])
 ax_x0 = plt.axes([0.13, 0.07, 0.74, 0.03])
-ax_y0 = plt.axes([0.13, 0.02, 0.74, 0.03])
+ax_v0 = plt.axes([0.13, 0.02, 0.74, 0.03])
 
 slider_mu = Slider(ax_mu, '$\mu$', 0, 4, valinit=mu)
 slider_x0 = Slider(ax_x0, '$x_0$', -2, 2, valinit=x0)
-slider_y0 = Slider(ax_y0, '$\dot{x}_0$', -6, 6, valinit=y0)
+slider_v0 = Slider(ax_v0, '$\dot{x}_0$', -6, 6, valinit=v0)
 
 
 def upd(val):
     val_mu = slider_mu.val
     val_x0 = slider_x0.val
-    val_y0 = slider_y0.val
+    val_v0 = slider_v0.val
     
-    update = solve_ivp(vanderpol, (t[0], t[-1]), (val_x0, val_y0),
+    update = solve_ivp(vanderpol, (t[0], t[-1]), (val_x0, val_v0),
                         args=[val_mu], method='RK45', dense_output=True)
     z = update.sol(t)
     
@@ -64,6 +64,6 @@ def upd(val):
 
 slider_mu.on_changed(upd)
 slider_x0.on_changed(upd)
-slider_y0.on_changed(upd)
+slider_v0.on_changed(upd)
 
 plt.show()
