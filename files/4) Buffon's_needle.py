@@ -12,9 +12,8 @@ t = rd.uniform(0, 2*np.pi, N)    # 각각 바늘의 x값,  y값, 바늘의 회�
 
 
 def needle(i):                                              #바늘을 생성하는 함수 입니다.
-    needle = plt.plot([x[i], x[i] + np.cos(t[i])],
-                      [y[i], y[i] + np.sin(t[i])])
-    return needle
+    return plt.plot([x[i], x[i] + np.cos(t[i])],
+                    [y[i], y[i] + np.sin(t[i])])
 
 
 def line(x):                                                #평면에 세로선을 그어주는 함수 입니다.
