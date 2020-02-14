@@ -35,8 +35,10 @@ for needle in needles:
     if check[0] != check[1]:
         n += 1      
 
+Pi = 2*N/n
+
 ax = plt.gca()
+ax.set_title('$\pi\\approx$' + str(Pi))
 ax.margins(False)
 
-print('Pi :', 2*N/n)
 plt.show()
