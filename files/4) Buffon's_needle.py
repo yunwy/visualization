@@ -36,8 +36,7 @@ for needle in needles:
 
 Pi = 2*N/n
 
-ax = plt.gca()
-ax.set_title('$\pi\\approx$' + str(Pi))
-ax.margins(False)
+ply.title('$\pi\\approx$' + str(Pi))
+plt.margins(False)
 
 plt.show()
