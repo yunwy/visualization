@@ -36,7 +36,7 @@ for needle in needles:
 
 Pi = 2*N/n
 
-ply.title('$\pi\\approx$' + str(Pi))
+plt.title('$\pi\\approx$' + str(Pi))
 plt.margins(False)
 
 plt.show()
