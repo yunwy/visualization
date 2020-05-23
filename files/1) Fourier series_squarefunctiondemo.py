@@ -1,17 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
+from scipy import signal as sg
 
 
 t = np.arange(-3*np.pi, 3*np.pi + 0.1, 0.1)
-
-#Square function
-def sqf(x):
-    k = np.floor(x/np.pi)
-    if k%2 == 0:
-        return np.pi/2
-    else:
-        return -np.pi/2
 
 
 #Coefficient
@@ -31,7 +24,7 @@ def Fourier(n):
     return F
 
 
-f1 = np.array(list(map(sqf, t)))
+f1 = np.pi/2*sg.square(t)
 f2 = Fourier(2)
         
 plt.figure(figsize=(10, 6))
