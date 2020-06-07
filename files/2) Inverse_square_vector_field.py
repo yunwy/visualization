@@ -15,6 +15,7 @@ plt.title('$ \\vec{F} = \\frac{k}{r^2} \\hat{r} $')
 ax.set_aspect('equal')
 
 circle = plt.Circle((0,0), 0.05, fc = 'k')
+circle.center = list(circle.center)
 ax.add_patch(circle)
 
 
@@ -39,7 +40,7 @@ def upd1(event):
         global xp, yp
         xp = event.xdata
         yp = event.ydata
-        circle.center = list(circle.center)
+        
         circle.center[0] = xp
         circle.center[1] = yp
 
@@ -78,7 +79,6 @@ val_k, sdata = 1, 1
 
 slider.on_changed(upd_intensity)
 radio.on_clicked(upd_sign)
-fig.canvas.mpl_connect('button_press_event', upd1)
 fig.canvas.mpl_connect('button_press_event', upd1)
 
 
