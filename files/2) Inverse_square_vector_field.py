@@ -34,7 +34,7 @@ fig.colorbar(vec, shrink = 0.5, aspect = 5)
 
 def upd1(event):
     if event.inaxes != ax:
-        return
+        pass
         
     else:
         global xp, yp
